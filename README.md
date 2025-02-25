@@ -124,7 +124,7 @@ kubectl get pods -n observability
 Forward Flask service:
 
 ```bash
-kubectl port-forward service/flask-service 8080:80 -n observability
+kubectl port-forward service/flask-service 8080:5141 -n observability
 ```
 
 - Flask App: [http://localhost:8080](http://localhost:8080)
@@ -180,5 +180,7 @@ docker-compose down
 ├── ├──requirements.txt               # Python dependencies
 ├─README.md                      # This file
 ```
+## Note:
+Some common problems may occur while locally extracting metrics of the application, try changig the url of the app in prometheus.yaml file.
 
 ---
