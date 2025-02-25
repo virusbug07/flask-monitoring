@@ -1,6 +1,13 @@
-# Flask Observability Stack (Minikube + Terraform)
+# **Cloud-Agnostic Flask App with Observability**
 
-This repository contains a Flask-based CRUD application instrumented with OpenTelemetry, Prometheus, Loki, and Tempo for observability. The stack can be deployed locally using Docker Compose or in Minikube using Terraform.
+This setup includes a **Flask CRUD application** with **logging (Loki), metrics (Prometheus), and tracing (Tempo)**. It can be deployed **locally on Minikube** or **on any cloud provider** with minimal configuration changes.
+
+---
+
+## **Deployment Options**
+- **Locally using Docker Compose**
+- **Minikube using Terraform & Kubernetes Manifests**
+- **Cloud Providers (GKE, AKS, EKS) - Requires configuration updates**
 
 ---
 
@@ -146,6 +153,28 @@ kubectl port-forward svc/grafana 3000:80 -n observability
 
 - Grafana UI: [http://localhost:3000](http://localhost:3000)
 
+### **Viewing Metrics, Logs, and Traces in Grafana**
+1. **Go to Grafana Dashboard** → Open [`http://localhost:3000`](http://localhost:3000) (or Minikube URL)
+2. **Login using default credentials** (`admin/admin`)
+3. **Go to "Explore" from the left sidebar**
+4. **Select the Data Source from the Dropdown**  
+   - **Prometheus** for Metrics  
+   - **Loki** for Logs  
+   - **Tempo** for Traces  
+5. **Run Queries** to view data:
+   - **Metrics (Prometheus Example):**
+     ```promql
+     up
+     ```
+   - **Logs (Loki Example):**
+     ```logql
+     {app="flask-app"}
+     ```
+   - **Traces (Tempo Example):**
+     - Click on **"Traces"** in Explore
+     - Select **Tempo** as the data source
+     - Enter a **trace ID** to search
+
 ---
 
 ## Destroying the Deployment
@@ -188,3 +217,13 @@ Since this project is currently deployed on **Minikube (local setup)**, the **Gi
 #### **Common Issues & Fixes:**  
 - **Metrics Scraping Issue:** If Prometheus **fails to scrape metrics**, update the **application URL** in the `prometheus.yaml` configuration file.  
 - **Minikube Connectivity Issues:** Ensure Minikube is running (`minikube start`) and correctly set as the current Kubernetes context (`kubectl config use-context minikube`).  
+
+
+
+
+
+
+
+
+
+
