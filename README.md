@@ -181,6 +181,10 @@ docker-compose down
 ├─README.md                      # This file
 ```
 ## Note:
-Some common problems may occur while locally extracting metrics of the application, try changig the url of the app in prometheus.yaml file.
+This setup is **cloud-agnostic** and can be deployed **both locally** and on **any cloud provider** by updating the **Kubeconfig** and making minor adjustments in the deployment configurations based on the cloud environment.  
 
----
+Since this project is currently deployed on **Minikube (local setup)**, the **GitHub Actions CI/CD workflow won't work** directly for local deployment. However, the workflow file is included and can be **modified as needed** for cloud-based Kubernetes clusters.  
+
+#### **Common Issues & Fixes:**  
+- **Metrics Scraping Issue:** If Prometheus **fails to scrape metrics**, update the **application URL** in the `prometheus.yaml` configuration file.  
+- **Minikube Connectivity Issues:** Ensure Minikube is running (`minikube start`) and correctly set as the current Kubernetes context (`kubectl config use-context minikube`).  
