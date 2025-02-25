@@ -1,0 +1,8 @@
+flask
+flask_sqlalchemy
+opentelemetry-sdk
+opentelemetry-exporter-otlp
+opentelemetry-instrumentation-flask
+prometheus_client
+structlog
+requests
